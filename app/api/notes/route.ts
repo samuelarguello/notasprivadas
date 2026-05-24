@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { supabaseAdmin } from '@/lib/supabaseAdmin';
+import { supabaseAdmin } from "../../../lib/supabaseAdmin";
 
 const MAX_NOTE_SIZE = 200_000;
 
