@@ -13,9 +13,15 @@ function base64Url(bytes: Uint8Array) {
 }
 
 async function deriveKey(secret: Uint8Array, salt: Uint8Array) {
-  const material = await crypto.subtle.importKey('raw', secret, 'PBKDF2', false, ['deriveKey']);
+  const material = await crypto.subtle.importKey(
+  'raw',
+  secret.buffer as ArrayBuffer,
+  'PBKDF2',
+  false,
+  ['deriveKey']
+);
   return crypto.subtle.deriveKey(
-    { name: 'PBKDF2', salt, iterations: 250000, hash: 'SHA-256' },
+    { name: 'PBKDF2', salt: salt.buffer as ArrayBuffer, iterations: 250000, hash: 'SHA-256' },
     material,
     { name: 'AES-GCM', length: 256 },
     false,
