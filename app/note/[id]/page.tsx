@@ -20,7 +20,7 @@ async function deriveKey(secret: Uint8Array, salt: Uint8Array) {
   ['deriveKey']
 );
   return crypto.subtle.deriveKey(
-    { name: 'PBKDF2', salt, iterations: 250000, hash: 'SHA-256' },
+    { name: 'PBKDF2', salt: salt.buffer as ArrayBuffer, iterations: 250000, hash: 'SHA-256' },
     material,
     { name: 'AES-GCM', length: 256 },
     false,
