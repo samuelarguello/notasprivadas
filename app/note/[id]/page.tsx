@@ -97,6 +97,11 @@ export default function ReadNote({ params }: { params: { id: string } }) {
   return (
     <main>
       <section className="card">
+        <img
+          src="/CUNEF Universidad_Fondo transparente.png"
+          alt="CUNEF"
+          className="logo"
+        />
         <h1>Nota privada</h1>
         {status && <p>{status}</p>}
         {error && <p className="error">{error}</p>}
