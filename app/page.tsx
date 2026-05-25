@@ -87,8 +87,19 @@ export default function Home() {
             <p><strong>Enlace privado:</strong></p>
             <input readOnly value={link} onFocus={e => e.currentTarget.select()} />
             <div className="row" style={{ marginTop: 12 }}>
-              <button className="secondary" onClick={copyLink}>Copiar enlace</button>
-            </div>
+            <button className="secondary" onClick={copyLink}>
+              Copiar enlace
+            </button>
+
+            <a
+              className="mailButton"
+              href={`mailto:?subject=Nota privada CUNEF&body=${encodeURIComponent(
+              `Tienes una nota privada:\n\n${link}`
+            )}`}
+            >
+            Enviar por correo
+            </a>
+        </div>
             <p className="small">La clave de descifrado va despues de # y no se envia al servidor.</p>
           </div>
         )}
