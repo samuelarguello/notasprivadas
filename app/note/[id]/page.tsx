@@ -47,6 +47,7 @@ export default function ReadNote({ params }: { params: { id: string } }) {
   const [note, setNote] = useState('');
   const [status, setStatus] = useState('Abriendo nota...');
   const [copied, setCopied] = useState(false);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     async function loadNote() {
