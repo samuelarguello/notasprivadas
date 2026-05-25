@@ -3,6 +3,9 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 function base64ToBytes(base64: string) {
   const binary = atob(base64);
   const bytes = new Uint8Array(binary.length);
@@ -59,8 +62,11 @@ export default function ReadNote({ params }: { params: { id: string } }) {
           throw new Error('Falta la clave de descifrado en el enlace.');
         }
 
-        const response = await fetch(`/api/notes/${encodeURIComponent(id)}`, {
-          cache: 'no-store'
+        const response = await fetch(`/api/notes/${encodeURIComponent(id)}?t=${Date.now()}`, {
+          cache: 'no-store',
+          headers: {
+          'Cache-Control': 'no-store'
+          }
         });
 
         const data = await response.json();
