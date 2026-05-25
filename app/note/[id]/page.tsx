@@ -3,9 +3,6 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
-
 function base64ToBytes(base64: string) {
   const binary = atob(base64);
   const bytes = new Uint8Array(binary.length);
