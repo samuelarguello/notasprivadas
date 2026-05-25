@@ -7,7 +7,7 @@ body {
 
   background:
     linear-gradient(rgba(255,255,255,.70), rgba(255,255,255,.70)),
-    url('/cunef-bg.jpg');
+    url('/fondo.jpg');
 
   background-size: cover;
   background-position: center;
