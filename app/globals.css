@@ -28,3 +28,13 @@ button:disabled { opacity:.6; cursor:not-allowed; }
 .error { color:var(--danger); font-weight:700; }
 .note { white-space:pre-wrap; padding:16px; background:#f9fbff; border:1px solid var(--border); border-radius:12px; }
 .small { font-size:13px; color:var(--muted); }
+.mailButton {
+  border-radius:12px;
+  background:#edf1ff;
+  color:var(--brand);
+  padding:13px 18px;
+  font-weight:700;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+}
