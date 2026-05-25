@@ -39,6 +39,9 @@ export default function Home() {
     setError('');
     setLink('');
     if (!note.trim()) return setError('Escribe una nota antes de enviarla.');
+    if (note.length > 5000) {
+      return setError('La nota es demasiado larga. Máximo 5000 caracteres.');
+    }
     setLoading(true);
 
     try {
@@ -77,7 +80,10 @@ export default function Home() {
       <section className="card">
         <h1>Notas privadas</h1>
         <p>Escribe una nota. Se cifra en tu navegador, se guarda temporalmente y se destruye al abrirse una vez.</p>
-        <textarea value={note} onChange={e => setNote(e.target.value)} placeholder="Escribe aqui la nota privada..." />
+        <p className="warning">
+          La nota se destruirá automáticamente al abrirse una vez o pasadas 24 horas.
+        </p>
+        <textarea value={note} maxLength={5000} onChange={e => setNote(e.target.value)} placeholder="Escribe aqui la nota privada..." />
         <div className="row" style={{ marginTop: 14 }}>
           <button onClick={createNote} disabled={loading}>{loading ? 'Creando...' : 'Crear enlace privado'}</button>
         </div>
