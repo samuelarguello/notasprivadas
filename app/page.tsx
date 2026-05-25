@@ -78,6 +78,7 @@ export default function Home() {
   return (
     <main>
       <section className="card">
+        <img src="/CUNEF Universidad_Fondo transparente.png" alt="CUNEF" className="logo" />
         <h1>Notas privadas</h1>
         <p>Escribe una nota. Se cifra en tu navegador, se guarda temporalmente y se destruye al abrirse una vez.</p>
         <p className="warning">
