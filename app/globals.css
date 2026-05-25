@@ -39,8 +39,11 @@ button:disabled { opacity:.6; cursor:not-allowed; }
   align-items:center;
 }
 .logo {
-  max-width: 160px;
-  margin-bottom: 20px;
+  width: 180px;
+  height: auto;
+  display: block;
+  margin: 0 auto 24px auto;
+  object-fit: contain;
 }
 
 .warning {
