@@ -85,6 +85,7 @@ export default function ReadNote({ params }: { params: { id: string } }) {
 
         setNote(new TextDecoder().decode(decrypted));
         setStatus('Nota abierta. Ya ha sido destruida del servidor.');
+        window.history.replaceState({}, '', '/');
       } catch (err) {
         setError(err instanceof Error ? err.message : 'No se pudo abrir la nota.');
         setStatus('');
