@@ -57,8 +57,9 @@ export default function Home() {
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || 'No se pudo crear la nota.');
 
-      const origin = window.location.origin;
-      setLink(`${origin}/note/${data.id}#${base64Url(secret)}`);
+      const baseUrl =
+      process.env.NEXT_PUBLIC_SITE_URL || window.location.origin;
+      setLink(`${baseUrl}/note/${data.id}#${base64Url(secret)}`);
       setNote('');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Error inesperado.');
