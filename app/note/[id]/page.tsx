@@ -46,7 +46,7 @@ async function deriveKey(secret: Uint8Array, salt: Uint8Array) {
 export default function ReadNote({ params }: { params: { id: string } }) {
   const [note, setNote] = useState('');
   const [status, setStatus] = useState('Abriendo nota...');
-  const [error, setError] = useState('');
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     async function loadNote() {
