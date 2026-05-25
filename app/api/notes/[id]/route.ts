@@ -1,23 +1,40 @@
 import { NextResponse } from 'next/server';
-import { supabaseAdmin } from "../../../../lib/supabaseAdmin";
+import { supabaseAdmin } from '../../../../lib/supabaseAdmin';
 
-export async function GET(_request: Request, { params }: { params: Promise<{ id: string }> }) {
+export async function GET(
+  _request: Request,
+  { params }: { params: { id: string } }
+) {
   try {
-    const { id } = await params;
+    const { id } = params;
 
     const { data, error } = await supabaseAdmin
       .from('notes')
-      .select('id, encrypted_note, iv, salt, expires_at, read_at')
+      .select('id, encrypted_note, iv, salt, expires_at')
       .eq('id', id)
-      .single();
+      .maybeSingle();
 
-    if (error || !data) {
-      return NextResponse.json({ error: 'La nota no existe o ya ha sido leida.' }, { status: 404 });
+    if (error) {
+      return NextResponse.json(
+        { error: 'No se pudo leer la nota.' },
+        { status: 500 }
+      );
     }
 
-    if (data.read_at || new Date(data.expires_at).getTime() < Date.now()) {
+    if (!data) {
+      return NextResponse.json(
+        { error: 'La nota no existe o ya ha sido leída.' },
+        { status: 404 }
+      );
+    }
+
+    if (new Date(data.expires_at) < new Date()) {
       await supabaseAdmin.from('notes').delete().eq('id', id);
-      return NextResponse.json({ error: 'La nota ha caducado o ya ha sido leida.' }, { status: 410 });
+
+      return NextResponse.json(
+        { error: 'La nota ha caducado.' },
+        { status: 410 }
+      );
     }
 
     await supabaseAdmin.from('notes').delete().eq('id', id);
@@ -25,11 +42,12 @@ export async function GET(_request: Request, { params }: { params: Promise<{ id:
     return NextResponse.json({
       encrypted_note: data.encrypted_note,
       iv: data.iv,
-      salt: data.salt,
-      expires_at: data.expires_at
+      salt: data.salt
     });
-  } catch (error) {
-    console.error(error);
-    return NextResponse.json({ error: 'No se pudo abrir la nota.' }, { status: 500 });
+  } catch {
+    return NextResponse.json(
+      { error: 'Error inesperado al abrir la nota.' },
+      { status: 500 }
+    );
   }
 }
