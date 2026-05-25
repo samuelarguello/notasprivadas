@@ -38,3 +38,16 @@ button:disabled { opacity:.6; cursor:not-allowed; }
   display:inline-flex;
   align-items:center;
 }
+.logo {
+  max-width: 160px;
+  margin-bottom: 20px;
+}
+
+.warning {
+  background: #fff7df;
+  border: 1px solid #f0d98c;
+  color: #735b00;
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-weight: 600;
+}
