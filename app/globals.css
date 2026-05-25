@@ -54,3 +54,44 @@ button:disabled { opacity:.6; cursor:not-allowed; }
   border-radius: 12px;
   font-weight: 600;
 }
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:#081120;
+    --card:#101b2e;
+    --text:#f4f7fb;
+    --muted:#b7c2d6;
+    --border:#2b3b58;
+  }
+
+  body {
+    background:
+      linear-gradient(rgba(8,17,32,.78), rgba(8,17,32,.78)),
+      url('/fondo.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+
+  .result,
+  .note {
+    background:#0c1728;
+  }
+
+  input,
+  textarea {
+    background:#0c1728;
+    color:#f4f7fb;
+  }
+}
+
+.qrBox {
+  margin-top: 16px;
+}
+
+.qrBox img {
+  width: 160px;
+  height: 160px;
+  border-radius: 12px;
+  background: white;
+  padding: 8px;
+}
