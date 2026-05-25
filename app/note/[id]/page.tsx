@@ -99,7 +99,22 @@ export default function ReadNote({ params }: { params: { id: string } }) {
         <h1>Nota privada</h1>
         {status && <p>{status}</p>}
         {error && <p className="error">{error}</p>}
-        {note && <div className="note">{note}</div>}
+        {note && (
+          <>
+          <div className="note">{note}</div>
+
+          <div style={{ marginTop: 16 }}>
+            <button
+              onClick={async () => {
+                await navigator.clipboard.writeText(note);
+                setCopied(true);
+            }}
+            >
+            {copied ? 'Nota copiada' : 'Copiar nota'}
+          </button>
+        </div>
+        </>
+        )}
         <p style={{ marginTop: 20 }}>
           <Link href="/">Crear otra nota</Link>
         </p>
