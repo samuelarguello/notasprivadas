@@ -33,24 +33,19 @@ export async function GET(
       return NextResponse.json({ error: 'La nota ha caducado.' }, { status: 410 });
     }
 
-    return NextResponse.json({
-      encrypted_note: data.encrypted_note,
-      iv: data.iv,
-      salt: data.salt
-    });
+    return NextResponse.json(
+    {
+    encrypted_note: data.encrypted_note,
+    iv: data.iv,
+    salt: data.salt
+    },
+    {
+    headers: {
+      'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate'
+      }
+    }
+    );
   } catch {
     return NextResponse.json({ error: 'Error inesperado al abrir la nota.' }, { status: 500 });
   }
 }
-return NextResponse.json(
-  {
-    encrypted_note: data.encrypted_note,
-    iv: data.iv,
-    salt: data.salt
-  },
-  {
-    headers: {
-      'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate'
-    }
-  }
-);
