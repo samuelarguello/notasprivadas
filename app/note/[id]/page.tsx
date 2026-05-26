@@ -60,6 +60,7 @@ export default function ReadNote({ params }: { params: { id: string } }) {
         }
 
         const response = await fetch(`/api/notes/${encodeURIComponent(id)}?t=${Date.now()}`, {
+          method: 'POST',
           cache: 'no-store',
           headers: {
           'Cache-Control': 'no-store'
