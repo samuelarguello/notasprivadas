@@ -25,7 +25,7 @@ export async function POST(request: Request) {
     }
 
     const ttlHours = Number(process.env.NOTE_TTL_HOURS || 72);
-    const expiresAt = new Date(Date.now() + ttlHours * 60 * 60 * 1000).toISOString();
+    const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000);
 
     for (let attempt = 0; attempt < 5; attempt += 1) {
       const id = randomId();
